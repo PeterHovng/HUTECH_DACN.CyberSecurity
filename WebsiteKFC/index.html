@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Peter's KFC - Vị ngon trên từng ngón tay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f9fafb;
+      color: #111827;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER & NAVBAR */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #b91c1c;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .navbar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: #fed7d7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #fee2e2;
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: #fbbf24;
+      color: #1f2933;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+
+    .nav-cta:hover {
+      background: #facc15;
+    }
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(135deg, #b91c1c 0%, #450a0a 60%, #111827 100%);
+      color: #fff;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.75rem 1.25rem 3.25rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(248,250,252,0.1);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-badge span {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: #f97316;
+      color: #111827;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title span {
+      color: #fbbf24;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      max-width: 28rem;
+      opacity: 0.95;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      background: #fbbf24;
+      color: #111827;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+    }
+
+    .btn-primary:hover {
+      background: #facc15;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      justify-self: center;
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+      border: 4px solid rgba(254, 242, 242, 0.4);
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-tag {
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15,23,42,0.95);
+      color: #f9fafb;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    .hero-tag span {
+      color: #fbbf24;
+      font-weight: 700;
+    }
+
+    /* MAIN LAYOUT */
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #111827;
+    }
+
+    section p.section-desc {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 1.25rem;
+    }
+
+    /* MENU CARDS */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .menu-card {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #f3f4f6;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.1s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.18);
+      border-color: #fecaca;
+    }
+
+    .menu-img {
+      height: 160px;
+      overflow: hidden;
+    }
+
+    .menu-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .menu-body {
+      padding: 0.85rem 1rem 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: #111827;
+    }
+
+    .menu-desc {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .menu-price {
+      font-weight: 700;
+      color: #b91c1c;
+    }
+
+    .badge-hot {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.45rem;
+      background: #fee2e2;
+      color: #b91c1c;
+      border-radius: 999px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .btn-add {
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: #111827;
+      color: #f9fafb;
+      cursor: pointer;
+      transition: background 0.1s ease, transform 0.1s ease;
+    }
+
+    .btn-add:hover {
+      background: #374151;
+      transform: translateY(-1px);
+    }
+
+    /* ORDER FORM */
+
+    .order-container {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    .order-form {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.25rem 1.4rem;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+      border: 1px solid #e5e7eb;
+    }
+
+    .order-form h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+    }
+
+    .order-form p {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.75rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: #374151;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.55rem 0.65rem;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.1s ease, box-shadow 0.1s ease;
+      background: #f9fafb;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #b91c1c;
+      box-shadow: 0 0 0 1px rgba(185, 28, 28, 0.15);
+      background: #ffffff;
+    }
+
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .order-side-note {
+      font-size: 0.86rem;
+      color: #4b5563;
+      background: #fef2f2;
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      border: 1px dashed #fecaca;
+    }
+
+    .order-side-note strong {
+      color: #b91c1c;
+    }
+
+    /* CONTACT */
+
+    .contact-box {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-box h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-box p {
+      margin-bottom: 0.4rem;
+      color: #4b5563;
+    }
+
+    .contact-highlight {
+      font-weight: 600;
+      color: #b91c1c;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #111827;
+      color: #9ca3af;
+      padding: 1.25rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .footer-inner a {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: left;
+      }
+      .hero-image-wrapper {
+        order: -1;
+      }
+      .menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .order-container,
+      .contact-box {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .nav-links {
+        font-size: 0.85rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .hero-inner {
+        padding-top: 2rem;
+        padding-bottom: 2.5rem;
+      }
+      .menu-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        padding: 2rem 1rem 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="navbar">
+      <div class="logo">Peter's <span>KFC</span></div>
+      <nav class="nav-links">
+        <a href="#home">Trang chủ</a>
+        <a href="#menu">Thực đơn</a>
+        <a href="#deals">Khuyến mãi</a>
+        <a href="#contact">Liên hệ</a>
+        <a href="#order" class="nav-cta">Đặt món</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <span>Hot</span>
+          Gà rán giòn tan – cay nồng chuẩn vị
+        </div>
+        <h1 class="hero-title">
+          Bùng nổ vị giác cùng <span>gà rán KFC</span> nóng hổi.
+        </h1>
+        <p class="hero-subtitle">
+          Thưởng thức gà rán giòn rụm, thơm phức, kèm combo đặc biệt dành riêng cho sinh viên mê KFC. Đặt nhanh trong vài cú click.
+        </p>
+        <div class="hero-cta">
+          <button class="btn-primary" id="orderNowBtn">Đặt ngay</button>
+          <span class="hero-note">Giao hàng mô phỏng – phục vụ cho mục đích demo hệ thống NIDS 😄</span>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <div class="hero-image">
+          <img src="https://images.pexels.com/photos/4109139/pexels-photo-4109139.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Gà rán KFC" />
+        </div>
+        <div class="hero-tag">
+          <span>🔥 Best Seller</span> Combo 3 miếng gà + Pepsi
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <main>
+    <!-- MENU -->
+    <section id="menu">
+      <h2>Thực đơn nổi bật</h2>
+      <p class="section-desc">
+        Một vài món “signature” của Peter's KFC. Các món và giá chỉ mang tính chất minh họa cho trang demo.
+      </p>
+      <div class="menu-grid">
+        <article class="menu-card">
+          <div class="menu-img">
+            <img src="https://static.kfcvietnam.com.vn/images/category/lg/COMBO%201%20NGUOI.jpg?v=46k7Wg" alt="Combo gà rán 1" />
+          </div>
+          <div class="menu-body">
+            <h3 class="menu-title">Combo Gà Rán 1</h3>
+            <p class="menu-desc">2 miếng gà rán giòn + 1 Pepsi (M) – phù hợp cho 1 người.</p>
+            <div class="menu-meta">
+              <span class="menu-price">79.000₫</span>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img">
+            <img src="https://static.kfcvietnam.com.vn/images/category/lg/COMBO%20NHOM.jpg?v=46k7Wg" alt="Combo gà cay 2" />
+          </div>
+          <div class="menu-body">
+            <h3 class="menu-title">Combo Gà Cay 2</h3>
+            <p class="menu-desc">3 miếng gà cay + khoai tây chiên – lựa chọn cho tín đồ “ăn cay”.</p>
+            <div class="menu-meta">
+              <span class="menu-price">99.000₫</span>
+              <span class="badge-hot">Best choice</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img">
+            <img src="https://static.kfcvietnam.com.vn/images/category/lg/GA.jpg?v=46k7Wg" alt="Burger gà giòn" />
+          </div>
+          <div class="menu-body">
+            <h3 class="menu-title">Burger Gà Giòn</h3>
+            <p class="menu-desc">Burger gà giòn kèm rau và sốt đặc biệt, ăn là ghiền.</p>
+            <div class="menu-meta">
+              <span class="menu-price">45.000₫</span>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img">
+            <img src="https://static.kfcvietnam.com.vn/images/category/lg/COM.jpg?v=46k7Wg" alt="Gà không xương" />
+          </div>
+          <div class="menu-body">
+            <h3 class="menu-title">Gà Không Xương Popcorn</h3>
+            <p class="menu-desc">Miếng gà cắt nhỏ, dễ ăn, thích hợp vừa ăn vừa xem phim.</p>
+            <div class="menu-meta">
+              <span class="menu-price">49.000₫</span>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img">
+            <img src="https://static.kfcvietnam.com.vn/images/category/lg/MON%20AN%20NHE.jpg?v=46k7Wg" alt="Khoai tây chiên" />
+          </div>
+          <div class="menu-body">
+            <h3 class="menu-title">Khoai Tây Chiên</h3>
+            <p class="menu-desc">Khoai tây giòn vàng, ăn kèm gà rán là hết sẩy.</p>
+            <div class="menu-meta">
+              <span class="menu-price">25.000₫</span>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img">
+            <img src="https://static.kfcvietnam.com.vn/images/category/lg/TRANG%20MIENG.jpg?v=46k7Wg" alt="Pepsi" />
+          </div>
+          <div class="menu-body">
+            <h3 class="menu-title">Pepsi / 7Up (M)</h3>
+            <p class="menu-desc">Thức uống giải khát đi kèm mọi combo KFC.</p>
+            <div class="menu-meta">
+              <span class="menu-price">15.000₫</span>
+              <button class="btn-add">Add to Cart</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DEALS / ORDER -->
+    <section id="deals">
+      <h2>Khuyến mãi mô phỏng</h2>
+      <p class="section-desc">
+        Giảm giá 10–20% chỉ mang tính chất demo giao diện. Không có giao dịch thật. Phần này bạn có thể dùng để giải thích trong đồ án rằng đây là "ứng dụng web thử nghiệm".
+      </p>
+    </section>
+
+    <!-- ORDER FORM -->
+    <section id="order">
+      <h2>Đặt món (mô phỏng)</h2>
+      <p class="section-desc">
+        Form đặt món dưới đây chỉ để demo UI. Khi bấm đặt, hệ thống sẽ hiển thị thông báo thay vì gửi đơn thật.
+      </p>
+
+      <div class="order-container">
+        <form class="order-form" id="orderForm">
+          <h3>Thông tin đơn hàng</h3>
+          <p>Nhập thông tin bên dưới để “đặt” một combo KFC (demo).</p>
+
+          <div class="form-group">
+            <label for="name">Họ tên</label>
+            <input type="text" id="name" placeholder="Nguyễn Văn A" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input type="tel" id="phone" placeholder="09xx xxx xxx" required />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Địa chỉ giao hàng</label>
+            <input type="text" id="address" placeholder="Số nhà, đường, quận/huyện..." required />
+          </div>
+
+          <div class="form-group">
+            <label for="combo">Chọn combo</label>
+            <select id="combo" required>
+              <option value="">-- Chọn combo --</option>
+              <option value="combo1">Combo Gà Rán 1 – 79.000₫</option>
+              <option value="combo2">Combo Gà Cay 2 – 99.000₫</option>
+              <option value="burger">Burger Gà Giòn – 45.000₫</option>
+              <option value="popcorn">Gà Không Xương Popcorn – 49.000₫</option>
+              <option value="fries">Khoai Tây Chiên – 25.000₫</option>
+              <option value="drink">Pepsi / 7Up – 15.000₫</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="note">Ghi chú thêm</label>
+            <textarea id="note" placeholder="Ví dụ: ít cay, giao buổi tối,..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">
+            Gửi đơn (demo)
+          </button>
+        </form>
+
+        <div class="order-side-note">
+          <strong>Ghi chú quan trọng cho đồ án:</strong><br />
+          Đây là website KFC mô phỏng, dùng làm “ứng dụng web nạn nhân” trong hệ thống phát hiện tấn công mạng (NIDS) triển khai trên AWS.  
+          Bạn có thể mô tả trong báo cáo rằng:
+          <ul style="margin-top: 0.5rem; padding-left: 1.1rem; list-style: disc;">
+            <li>Website chạy trên EC2, phía trước là ALB + WAF.</li>
+            <li>Log truy cập có thể được thu thập và phân tích bởi mô hình ML IDS.</li>
+            <li>Không có giao dịch tài chính hay xử lý dữ liệu nhạy cảm thật.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Liên hệ & Thông tin chi nhánh (giả lập)</h2>
+      <p class="section-desc">
+        Đây chỉ là thông tin minh họa phục vụ demo. Có thể chỉnh sửa nội dung cho phù hợp với kịch bản đồ án.
+      </p>
+      <div class="contact-box">
+        <div>
+          <h3>Peter's KFC - Chi nhánh Demo</h3>
+          <p><span class="contact-highlight">Địa chỉ:</span> 123 Đường Demo, Quận 1, TP. Hồ Chí Minh</p>
+          <p><span class="contact-highlight">Giờ mở cửa:</span> 7:30 - 22:00 (T2 - CN)</p>
+          <p><span class="contact-highlight">Hotline:</span> 1900 6088 (giả lập)</p>
+        </div>
+        <div>
+          <h3>Liên hệ hỗ trợ đồ án</h3>
+          <p>Giải thích lý do tại sao lại có web này:</p>
+          <p>- Website này chỉ là phần UI giả lập.</p>
+          <p>- Trọng tâm đề tài nằm ở hệ thống phát hiện tấn công (NIDS) dùng Machine Learning trên AWS.</p>
+          <p>Email minh họa: <span class="contact-highlight">support@peters-kfc-demo.com</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>© 2025 Peter's KFC Demo. All rights reserved (giả lập).</div>
+      <div>Made for: <a href="#">NIDS on AWS Project</a></div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    // Nút "Đặt ngay" ở hero scroll xuống mục đặt hàng
+    const orderNowBtn = document.getElementById("orderNowBtn");
+    const orderSection = document.getElementById("order");
+
+    if (orderNowBtn && orderSection) {
+      orderNowBtn.addEventListener("click", () => {
+        orderSection.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+
+    // Xử lý submit form đặt món (demo)
+    const orderForm = document.getElementById("orderForm");
+
+    if (orderForm) {
+      orderForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const combo = document.getElementById("combo").value;
+
+        if (!name || !combo) {
+          alert("Vui lòng điền đầy đủ họ tên và chọn combo.");
+          return;
+        }
+
+        alert("Đơn hàng đã được ghi nhận (mô phỏng). Hệ thống không thực hiện đặt hàng thật.");
+        orderForm.reset();
+      });
+    }
+  </script>
+</body>
+</html>
